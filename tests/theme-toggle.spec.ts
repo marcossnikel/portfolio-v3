@@ -5,7 +5,7 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto('/');
     
     // Check that theme toggle button exists
-    const themeToggle = page.getByRole('button').filter({ has: page.locator('svg') });
+    const themeToggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ }).first();
     await expect(themeToggle).toBeVisible();
   });
 
@@ -20,7 +20,7 @@ test.describe('Theme Toggle Functionality', () => {
     const initialClass = await html.getAttribute('class');
     
     // Find theme toggle button
-    const themeToggle = page.getByRole('button').filter({ has: page.locator('svg') });
+    const themeToggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ }).first();
     
     // Click to toggle theme
     await themeToggle.click();
@@ -48,7 +48,7 @@ test.describe('Theme Toggle Functionality', () => {
     await page.waitForTimeout(500);
     
     // Toggle to dark mode
-    const themeToggle = page.getByRole('button').filter({ has: page.locator('svg') });
+    const themeToggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ }).first();
     await themeToggle.click();
     await page.waitForTimeout(300);
     
@@ -69,7 +69,7 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto('/');
     await page.waitForTimeout(500);
     
-    const themeToggle = page.getByRole('button').filter({ has: page.locator('svg') });
+    const themeToggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ }).first();
     const svg = themeToggle.locator('svg');
     
     // Click to toggle and check icon changes
@@ -84,7 +84,7 @@ test.describe('Theme Toggle Functionality', () => {
     await page.goto('/');
     await page.waitForTimeout(500);
     
-    const themeToggle = page.getByRole('button').filter({ has: page.locator('svg') });
+    const themeToggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ }).first();
     
     // Test light mode colors
     const body = page.locator('body');
@@ -102,7 +102,7 @@ test.describe('Theme Toggle Functionality', () => {
   test('should maintain theme toggle accessibility', async ({ page }) => {
     await page.goto('/');
     
-    const themeToggle = page.getByRole('button').filter({ has: page.locator('svg') });
+    const themeToggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ }).first();
     
     // Check button is keyboard accessible
     await page.keyboard.press('Tab');

@@ -17,8 +17,8 @@ test.describe('Accessibility Tests', () => {
   test('should have accessible navigation', async ({ page }) => {
     await page.goto('/');
     
-    // Check navigation has proper role
-    const nav = page.getByRole('navigation');
+    // Check navigation has proper role - target main navigation specifically
+    const nav = page.getByRole('navigation', { name: 'Main navigation' });
     await expect(nav).toBeVisible();
     
     // Check navigation links are accessible
@@ -80,7 +80,7 @@ test.describe('Accessibility Tests', () => {
     expect(headingColor.color).toBeTruthy();
     
     // Toggle to dark mode and test contrast
-    const themeToggle = page.getByRole('button').filter({ has: page.locator('svg') });
+    const themeToggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ }).first();
     await themeToggle.click();
     await page.waitForTimeout(300);
     
@@ -100,7 +100,7 @@ test.describe('Accessibility Tests', () => {
     await page.goto('/');
     
     // Check that interactive elements have focus styles
-    const themeToggle = page.getByRole('button').filter({ has: page.locator('svg') });
+    const themeToggle = page.getByRole('button', { name: /Switch to (light|dark) mode/ }).first();
     await themeToggle.focus();
     
     // Check focus is visible (basic check)
@@ -121,7 +121,7 @@ test.describe('Accessibility Tests', () => {
     
     // Check for semantic elements
     await expect(page.getByRole('main')).toBeVisible();
-    await expect(page.getByRole('navigation')).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
     await expect(page.getByRole('contentinfo')).toBeVisible(); // footer
     
     // Check that content uses proper semantic elements
