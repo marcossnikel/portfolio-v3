@@ -1,8 +1,114 @@
 @import "tailwindcss";
 
-@theme inline {
-  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace;
+/* Configure dark mode to use class-based approach */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  
+  .dark {
+    color-scheme: dark;
+  }
+}
+
+/* Manual dark mode overrides to fix the class-based dark mode */
+@layer utilities {
+  /* Force dark mode styles when .dark class is present */
+  .dark .dark\:bg-black {
+    background-color: #000000 !important;
+  }
+  
+  .dark .dark\:text-white {
+    color: #ffffff !important;
+  }
+  
+  .dark .dark\:text-gray-300 {
+    color: #d1d5db !important;
+  }
+  
+  .dark .dark\:border-gray-700 {
+    border-color: #374151 !important;
+  }
+  
+  .dark .dark\:border-gray-800 {
+    border-color: #1f2937 !important;
+  }
+  
+  .dark .dark\:bg-gray-900\/50 {
+    background-color: rgba(17, 24, 39, 0.5) !important;
+  }
+  
+  .dark .dark\:bg-gray-800 {
+    background-color: #1f2937 !important;
+  }
+  
+  .dark .dark\:bg-gray-900 {
+    background-color: #111827 !important;
+  }
+  
+  .dark .dark\:bg-gray-800\/50 {
+    background-color: rgba(31, 41, 55, 0.5) !important;
+  }
+  
+  .dark .dark\:bg-gray-700 {
+    background-color: #374151 !important;
+  }
+  
+  .dark .dark\:hover\:bg-gray-800:hover {
+    background-color: #1f2937 !important;
+  }
+  
+  .dark .dark\:text-blue-400 {
+    color: #60a5fa !important;
+  }
+  
+  .dark .dark\:text-yellow-400 {
+    color: #fbbf24 !important;
+  }
+  
+  /* Main layout backgrounds */
+  .dark .dark\:bg-black\/95 {
+    background-color: rgba(0, 0, 0, 0.95) !important;
+  }
+  
+  /* Navigation and UI elements */
+  .dark .dark\:border-gray-800 {
+    border-color: #1f2937 !important;
+  }
+  
+  .dark .dark\:hover\:text-white:hover {
+    color: #ffffff !important;
+  }
+  
+  .dark .dark\:hover\:bg-gray-800:hover {
+    background-color: #1f2937 !important;
+  }
+  
+  .dark .dark\:hover\:bg-gray-900:hover {
+    background-color: #111827 !important;
+  }
+  
+  .dark .dark\:text-gray-500 {
+    color: #6b7280 !important;
+  }
+  
+  /* Social links hover effects */
+  .dark .dark\:hover\:bg-gray-800\/50:hover {
+    background-color: rgba(31, 41, 55, 0.5) !important;
+  }
+  
+  .dark .dark\:group-hover\:bg-gray-700 {
+    background-color: #374151 !important;
+  }
+  
+  /* Text colors for links */
+  .dark .dark\:text-yellow-500 {
+    color: #eab308 !important;
+  }
+  
+  .dark .dark\:hover\:text-yellow-400:hover {
+    color: #fbbf24 !important;
+  }
 }
 
 * {
@@ -16,7 +122,7 @@ html {
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
