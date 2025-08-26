@@ -1,90 +1,53 @@
 import Link from "next/link";
+import Image from "next/image";
+import { SocialLinks } from "@/components/SocialLinks";
 
 export default function AboutPage() {
   return (
-    <div className="px-16 sm:py-24">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-12 px-16">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            About <span className="text-red-600">Marcos Nikel</span>
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-            A passionate developer dedicated to crafting exceptional digital
-            experiences through clean code and innovative solutions.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+    <div className="max-w-7xl mx-auto layout-margins py-24">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+        {/* Left Column - Text Content */}
+        <div className="space-y-8">
           <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-              Who I Am
-            </h2>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              I'm a software developer with a passion for creating beautiful,
-              functional web applications. My journey in technology has been
-              driven by curiosity and a desire to solve complex problems through
-              elegant code.
+            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+              I'm Marcos Nikel. I live in{" "}
+              <span className="text-blue-500 dark:text-blue-400">São Paulo</span>, where I build the next{" "}
+              <span className="bg-blue-600 text-white px-2 py-1 rounded">
+                level
+              </span>
+              .
+            </h1>
+          </div>
+
+          <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed font-mono">
+            <p>
+              I have always been close to computers since I was a kid. I spent my whole childhood playing Perfect World since I was 6 years old and got my first contact with programming when I was 10, creating my own server. Life happened and I ended up studying nutrition in high school and later started college in that field. After studying nutrition for a whole year before pivoting to Computer Science, this was the best decision I ever made, transforming a hobby into my career.
             </p>
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              When I'm not coding, you'll find me exploring new technologies,
-              writing technical articles, or contributing to open-source
-              projects. I believe in continuous learning and sharing knowledge
-              with the developer community.
+
+            <p>
+              The only thing that I like more than computers and programming is challenging myself in some physical way—in the gym, running, or other activities that push my limits.
+            </p>
+
+            <p>
+              Currently I work at the largest company in South America, <Link href="https://www.mercadolivre.com.br/" target="_blank" rel="noopener noreferrer" className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200 font-semibold">Mercado Libre</Link>, as a Software Engineer where I work mostly with <span className="text-blue-500 dark:text-blue-400 font-semibold">Golang</span>, Cloud Services and Gen AI.
             </p>
           </div>
 
-          <div className="space-y-6">
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
-              What I Do
-            </h2>
-            <div className="space-y-4">
-              <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-red-300 dark:hover:border-red-700 transition-colors duration-200">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Full-Stack Development
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Building end-to-end web applications with modern technologies
-                </p>
-              </div>
-              <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-red-300 dark:hover:border-red-700 transition-colors duration-200">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  UI/UX Design
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Creating intuitive and aesthetically pleasing user interfaces
-                </p>
-              </div>
-              <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-red-300 dark:hover:border-red-700 transition-colors duration-200">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                  Technical Writing
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
-                  Sharing knowledge through detailed articles and tutorials
-                </p>
-              </div>
-            </div>
-          </div>
+          {/* Social Links */}
+          <SocialLinks />
         </div>
 
-        <div className="flex flex-wrap gap-4 justify-center">
-          <Link
-            href="/articles"
-            className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-all duration-200 hover:shadow-lg"
-          >
-            Read My Articles
-          </Link>
-          <Link
-            href="/career"
-            className="px-6 py-3 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 hover:border-red-300 dark:hover:border-red-700 rounded-lg font-medium transition-all duration-200"
-          >
-            View My Career
-          </Link>
-          <Link
-            href="/hire-me"
-            className="px-6 py-3 bg-gradient-to-r from-gray-900 to-red-600 hover:from-black hover:to-red-700 text-white rounded-lg font-medium transition-all duration-200 hover:shadow-lg"
-          >
-            Work With Me
-          </Link>
+        {/* Right Column - Image */}
+        <div className="lg:pl-8">
+          <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gray-800">
+            <Image
+              src="/me.jpeg"
+              alt="Marcos Nikel"
+              width={600}
+              height={750}
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </div>
     </div>
