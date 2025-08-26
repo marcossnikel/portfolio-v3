@@ -8,59 +8,53 @@ import Image from "next/image";
 const navigation = [
   { name: "About", href: "/" },
   { name: "Articles", href: "/articles" },
-  { name: "Career", href: "/career" },
-  { name: "Hire Me", href: "/hire-me" },
+  { name: "Projects", href: "/projects" },
+  { name: "Speaking", href: "/speaking" },
+  { name: "Hire me", href: "/hire-me" },
+  { name: "Uses", href: "/uses" },
 ];
 
 export function Navigation() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-black/90 backdrop-blur-md sticky top-0 z-50">
-      <div className="flex">
-        <div className="w-16"></div>
-        <div className="flex-1 px-4 sm:px-6 lg:px-8">
+    <nav className="bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 sticky top-0 z-50" aria-label="Main navigation">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link
               href="/"
-              className="flex items-center gap-3 space-x-3 hover:opacity-80 transition-opacity duration-200"
+              className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200"
             >
-              <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-gray-200 dark:bg-gray-700">
                 <Image
                   src="/me.jpeg"
                   alt="Marcos Nikel"
-                  width={32}
-                  height={32}
+                  width={40}
+                  height={40}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <span className="font-semibold text-gray-900 dark:text-white">
-                Marcos Nikel
-              </span>
             </Link>
           </div>
 
-          {/* Navigation Links - Grouped with rounded border */}
-          <div className="hidden md:block">
-            <div className="flex items-center bg-gray-100 dark:bg-gray-800 rounded-full p-1 border border-gray-200 dark:border-gray-700">
+          {/* Navigation Links - Rounded border group */}
+          <div className="hidden md:flex items-center">
+            <div className="flex items-center bg-gray-50 dark:bg-gray-900/50 rounded-full p-1 border border-gray-200 dark:border-gray-700">
               {navigation.map((item) => {
                 const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
+                    className={`px-4 py-2 text-sm font-medium rounded-full transition-all duration-200 ${
                       isActive
-                        ? "text-white bg-red-600 shadow-lg"
-                        : "text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-white dark:hover:bg-gray-700"
+                        ? "text-white bg-gray-900 dark:bg-white dark:text-black shadow-sm"
+                        : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
                     }`}
                   >
                     {item.name}
-                    {isActive && (
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-1 h-1 bg-red-600 rounded-full" />
-                    )}
                   </Link>
                 );
               })}
@@ -77,7 +71,7 @@ export function Navigation() {
             <ThemeToggle />
             <button
               type="button"
-              className="text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500 p-2 rounded-lg transition-colors duration-200"
+              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500 p-2 rounded-lg transition-colors duration-200"
             >
               <svg
                 className="h-6 w-6"
@@ -95,13 +89,11 @@ export function Navigation() {
             </button>
           </div>
         </div>
-        </div>
-        <div className="w-16"></div>
       </div>
 
       {/* Mobile menu */}
-      <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
-        <div className="px-4 pt-2 pb-3 space-y-1">
+      <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-black">
+        <div className="px-6 pt-2 pb-3 space-y-1">
           {navigation.map((item) => {
             const isActive = pathname === item.href;
             return (
@@ -110,8 +102,8 @@ export function Navigation() {
                 href={item.href}
                 className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                   isActive
-                    ? "text-white bg-red-600 shadow-md"
-                    : "text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-900"
+                    ? "text-white bg-gray-900 dark:bg-gray-800"
+                    : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-900"
                 }`}
               >
                 {item.name}
