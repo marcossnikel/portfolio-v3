@@ -5,7 +5,10 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Marcos Nikel - Portfolio",
+  title: {
+    template: "%s | Marcos Nikel",
+    default: "Marcos Nikel - Portfolio",
+  },
   description:
     "Personal portfolio of Marcos Nikel showcasing articles, career, and projects",
   icons: {

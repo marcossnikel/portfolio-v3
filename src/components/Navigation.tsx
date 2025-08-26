@@ -6,7 +6,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import Image from "next/image";
 
 const navigation = [
-  { name: "About", href: "/" },
+  { name: "About", href: "/about" },
   { name: "Articles", href: "/articles" },
   { name: "Projects", href: "/projects" },
   { name: "Speaking", href: "/speaking" },

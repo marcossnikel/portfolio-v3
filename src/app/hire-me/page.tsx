@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Hire Me",
+};
+
 export default function HireMePage() {
   return (
     <div className="container mx-auto px-4 py-8">

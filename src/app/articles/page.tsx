@@ -1,54 +1,63 @@
 import Link from "next/link";
 import { getAllArticles } from "@/lib/markdown";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Articles",
+};
 
 export default function ArticlesPage() {
   const articles = getAllArticles();
 
   return (
-    <div className="max-w-7xl mx-auto px-6 sm:px-8 py-24">
-      <div className="max-w-4xl">
-        <div className="mb-12">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Articles
-          </h1>
-          <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+    <div className="max-w-2xl mx-auto">
+      <div className="flex flex-col gap-16 md:gap-24">
+        <div className="flex animate-in flex-col gap-8">
+          <div className="animate-in" style={{animationDelay: "0.1s", animationFillMode: "both"}}>
+            <h1 className="text-3xl font-semibold tracking-tighter text-primary">
+              Articles
+            </h1>
+          </div>
+          <p className="animate-in text-secondary" style={{animationDelay: "0.2s", animationFillMode: "both"}}>
             Thoughts, ideas, and insights about software development and technology.
           </p>
         </div>
 
         {articles.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="p-8 border border-gray-200 dark:border-gray-800 rounded-2xl">
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
-                No articles published yet.
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                Add markdown files to{" "}
-                <code className="bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-2 py-1 rounded">
-                  src/content/articles/
-                </code>{" "}
-                to get started.
-              </p>
-            </div>
+          <div className="animate-in flex flex-col gap-6" style={{animationDelay: "0.3s", animationFillMode: "both"}}>
+            <p className="text-secondary">
+              No articles published yet.
+            </p>
+            <p className="text-sm text-tertiary">
+              Add markdown files to{" "}
+              <code className="rounded bg-secondary px-2 py-1 font-mono text-sm text-accent">
+                src/content/articles/
+              </code>{" "}
+              to get started.
+            </p>
           </div>
         ) : (
-          <div className="space-y-8">
-            {articles.map((article) => (
+          <div className="flex flex-col gap-16">
+            {articles.map((article, index) => (
               <article
                 key={article.slug}
-                className="p-8 border border-gray-200 dark:border-gray-800 rounded-2xl hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200"
+                className="animate-in flex flex-col gap-4"
+                style={{
+                  animationDelay: `${0.3 + index * 0.1}s`,
+                  animationFillMode: "both"
+                }}
               >
-                <h2 className="text-2xl font-semibold mb-4">
+                <h2 className="text-2xl font-semibold tracking-tight">
                   <Link
                     href={`/articles/${article.slug}`}
-                    className="text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+                    className="text-primary hover:text-accent transition-colors duration-200"
                   >
                     {article.title}
                   </Link>
                 </h2>
 
                 {article.date && (
-                  <time className="text-sm text-gray-500 dark:text-gray-400 mb-4 block">
+                  <time className="text-sm text-tertiary">
                     {new Date(article.date).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",
@@ -58,18 +67,18 @@ export default function ArticlesPage() {
                 )}
 
                 {article.excerpt && (
-                  <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                  <p className="text-secondary leading-relaxed">
                     {article.excerpt}
                   </p>
                 )}
 
                 <Link
                   href={`/articles/${article.slug}`}
-                  className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-gray-900 dark:hover:text-white font-medium transition-colors duration-200"
+                  className="inline-flex w-fit items-center gap-1 rounded-md bg-secondary px-3 py-2 text-sm text-secondary hover:bg-tertiary transition-colors duration-200"
                 >
                   Read article
                   <svg
-                    className="ml-2 w-4 h-4"
+                    className="w-4 h-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
