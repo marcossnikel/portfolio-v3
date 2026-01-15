@@ -1,213 +1,419 @@
-import Image from "next/image";
-import Link from "next/link";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Home",
-};
+import {
+  Box,
+  Container,
+  Heading,
+  Text,
+  VStack,
+  HStack,
+  Flex,
+  IconButton,
+  useColorModeValue,
+  Badge,
+} from "@chakra-ui/react";
+import { Link } from "@chakra-ui/next-js";
+import NextImage from "next/image";
+import {
+  GitHubIcon,
+  LinkedInIcon,
+  TwitterIcon,
+  EmailIcon,
+} from "@/components/Icons";
+
+interface CareerItem {
+  company: string;
+  role: string;
+  period: string;
+  logo: string;
+  url: string;
+  current?: boolean;
+}
+
+const careerData: CareerItem[] = [
+  {
+    company: "Salsa",
+    role: "Software Engineer",
+    period: "2026 — Present",
+    logo: "/salsa.png",
+    url: "https://salsa.dev",
+    current: true,
+  },
+  {
+    company: "Mercado Libre",
+    role: "Software Engineer",
+    period: "2024 — 2026",
+    logo: "/mercadolivre.png",
+    url: "https://mercadolivre.com.br",
+  },
+  {
+    company: "NowCM",
+    role: "Software Engineer",
+    period: "2023 — 2024",
+    logo: "/nowcm.png",
+    url: "https://nowcm.eu",
+  },
+  {
+    company: "Minutrade",
+    role: "Software Engineer",
+    period: "2022 — 2023",
+    logo: "/minutrade.png",
+    url: "https://minu.co",
+  },
+];
+
+function HeroSection() {
+  const headingColor = useColorModeValue("gray.800", "gray.50");
+  const accentColor = useColorModeValue("accent.600", "accent.400");
+  const subtitleColor = useColorModeValue("gray.600", "gray.400");
+
+  return (
+    <Box py={{ base: 16, md: 24 }}>
+      <VStack spacing={6} textAlign="center">
+        <Box
+          borderRadius="full"
+          overflow="hidden"
+          boxSize={{ base: "150px", md: "180px" }}
+          border="4px solid"
+          borderColor={accentColor}
+          boxShadow="xl"
+        >
+          <NextImage
+            src="/me.jpeg"
+            alt="Marcos Nikel"
+            width={180}
+            height={180}
+            style={{ objectFit: "cover", width: "100%", height: "100%" }}
+          />
+        </Box>
+
+        <VStack spacing={3}>
+          <Heading
+            as="h1"
+            fontSize={{ base: "3xl", md: "5xl" }}
+            fontFamily="heading"
+            color={headingColor}
+          >
+            Marcos Nikel 🇧🇷
+          </Heading>
+          <Text fontSize={{ base: "lg", md: "xl" }} color={accentColor} fontWeight="medium">
+            Software Engineer
+          </Text>
+          <Text fontSize="md" color={subtitleColor} maxW="lg" textAlign="center" lineHeight="tall">
+            Software engineer who loves building things — lately with a little help from{" "}
+            <Text
+              as="span"
+              color="orange.400"
+              fontWeight="semibold"
+              fontStyle="italic"
+            >
+              Claude
+            </Text>
+            {" "}🤖. When not coding, you'll find me chasing marathon finish lines or pretending I know what I'm doing at the gym.
+          </Text>
+        </VStack>
+
+        <HStack spacing={4} pt={4}>
+          <IconButton
+            as="a"
+            href="https://github.com/marcossnikel"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            icon={<GitHubIcon boxSize={5} />}
+            variant="ghost"
+            size="lg"
+            color={useColorModeValue("gray.600", "gray.400")}
+            _hover={{ color: accentColor, bg: useColorModeValue("gray.100", "gray.800") }}
+          />
+          <IconButton
+            as="a"
+            href="https://www.linkedin.com/in/mnikel/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            icon={<LinkedInIcon boxSize={5} />}
+            variant="ghost"
+            size="lg"
+            color={useColorModeValue("gray.600", "gray.400")}
+            _hover={{ color: accentColor, bg: useColorModeValue("gray.100", "gray.800") }}
+          />
+          <IconButton
+            as="a"
+            href="https://x.com/marcosnikel_"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Twitter"
+            icon={<TwitterIcon boxSize={5} />}
+            variant="ghost"
+            size="lg"
+            color={useColorModeValue("gray.600", "gray.400")}
+            _hover={{ color: accentColor, bg: useColorModeValue("gray.100", "gray.800") }}
+          />
+          <IconButton
+            as="a"
+            href="mailto:marcosnikeldev@gmail.com"
+            aria-label="Email"
+            icon={<EmailIcon boxSize={5} />}
+            variant="ghost"
+            size="lg"
+            color={useColorModeValue("gray.600", "gray.400")}
+            _hover={{ color: accentColor, bg: useColorModeValue("gray.100", "gray.800") }}
+          />
+        </HStack>
+      </VStack>
+    </Box>
+  );
+}
+
+function AboutSection() {
+  const headingColor = useColorModeValue("gray.800", "gray.50");
+  const textColor = useColorModeValue("gray.700", "gray.300");
+  const accentColor = useColorModeValue("accent.600", "accent.400");
+  const bgColor = useColorModeValue("white", "gray.900");
+  const borderColor = useColorModeValue("gray.200", "gray.800");
+
+  return (
+    <Box py={{ base: 12, md: 16 }}>
+      <VStack spacing={8} align="stretch">
+        <Heading
+          as="h2"
+          fontSize={{ base: "2xl", md: "3xl" }}
+          fontFamily="heading"
+          color={headingColor}
+          textAlign="center"
+        >
+          About Me
+        </Heading>
+
+        <Box
+          bg={bgColor}
+          borderRadius="2xl"
+          border="1px solid"
+          borderColor={borderColor}
+          p={{ base: 6, md: 10 }}
+          boxShadow="sm"
+        >
+          <VStack spacing={5} align="stretch">
+            <Text color={textColor} fontSize={{ base: "md", md: "lg" }} lineHeight="tall">
+              I have always been close to computers since I was a kid. I spent my whole childhood
+              playing Perfect World since I was 6 years old and got my first contact with
+              programming when I was 10, creating my own server. Life happened and I ended up
+              studying nutrition in high school and later started college in that field. After
+              studying nutrition for a whole year before pivoting to Computer Science, this was the
+              best decision I ever made, transforming a hobby into my career.
+            </Text>
+
+            <Text color={textColor} fontSize={{ base: "md", md: "lg" }} lineHeight="tall">
+              What drives me is the joy of creating things—whether it's building a new feature, 
+              solving a complex problem, or bringing an idea to life. I believe the best products 
+              come from great collaboration, and I genuinely enjoy working with people, learning 
+              from different perspectives, and building meaningful relationships along the way.
+            </Text>
+
+            <Text color={textColor} fontSize={{ base: "md", md: "lg" }} lineHeight="tall">
+              Outside of work, the only thing I like more than coding is challenging myself 
+              physically—in the gym, running, or any activity that pushes my limits. Currently 
+              I'm at{" "}
+              <Link
+                href="https://salsa.dev"
+                isExternal
+                color={accentColor}
+                fontWeight="semibold"
+              >
+                Salsa
+              </Link>
+              , where I continue doing what I love: creating and collaborating.
+            </Text>
+          </VStack>
+        </Box>
+      </VStack>
+    </Box>
+  );
+}
+
+function CareerSection() {
+  const headingColor = useColorModeValue("gray.800", "gray.50");
+  const bgColor = useColorModeValue("white", "gray.900");
+  const borderColor = useColorModeValue("gray.200", "gray.800");
+  const textColor = useColorModeValue("gray.700", "gray.300");
+  const periodColor = useColorModeValue("gray.500", "gray.500");
+  const accentColor = useColorModeValue("accent.600", "accent.400");
+  const hoverBg = useColorModeValue("gray.50", "gray.800");
+  const logoBg = useColorModeValue("gray.100", "gray.800");
+
+  return (
+    <Box py={{ base: 12, md: 16 }}>
+      <VStack spacing={8} align="stretch">
+        <Heading
+          as="h2"
+          fontSize={{ base: "2xl", md: "3xl" }}
+          fontFamily="heading"
+          color={headingColor}
+          textAlign="center"
+        >
+          Career
+        </Heading>
+
+        <VStack spacing={4} align="stretch">
+          {careerData.map((item) => (
+            <Link
+              key={item.company}
+              href={item.url}
+              isExternal
+              _hover={{ textDecoration: "none" }}
+            >
+              <Flex
+                bg={bgColor}
+                borderRadius="xl"
+                border="1px solid"
+                borderColor={borderColor}
+                p={4}
+                align="center"
+                gap={4}
+                transition="all 0.2s"
+                cursor="pointer"
+                _hover={{ bg: hoverBg, borderColor: accentColor }}
+              >
+                <Box
+                  flexShrink={0}
+                  boxSize="48px"
+                  borderRadius="lg"
+                  bg={logoBg}
+                  overflow="hidden"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <NextImage
+                    src={item.logo}
+                    alt={item.company}
+                    width={40}
+                    height={40}
+                    style={{ objectFit: "contain" }}
+                  />
+                </Box>
+
+                <Box flex="1" minW={0}>
+                  <HStack spacing={2}>
+                    <Text fontWeight="semibold" color={headingColor} _groupHover={{ color: accentColor }}>
+                      {item.company}
+                    </Text>
+                    {item.current && (
+                      <Badge colorScheme="teal" fontSize="xs">
+                        Current
+                      </Badge>
+                    )}
+                  </HStack>
+                  <Text fontSize="sm" color={textColor}>
+                    {item.role}
+                  </Text>
+                </Box>
+
+                <Text fontSize="sm" color={periodColor} fontFamily="mono" whiteSpace="nowrap">
+                  {item.period}
+                </Text>
+              </Flex>
+            </Link>
+          ))}
+        </VStack>
+      </VStack>
+    </Box>
+  );
+}
+
+const techStack = [
+  { name: "TypeScript", category: "language" },
+  { name: "Golang", category: "language" },
+  { name: "Kotlin", category: "language" },
+  { name: "Java", category: "language" },
+  { name: "Python", category: "language" },
+  { name: "React", category: "frontend" },
+  { name: "Next.js", category: "frontend" },
+  { name: "Tailwind CSS", category: "frontend" },
+  { name: "Node.js", category: "backend" },
+  { name: "PostgreSQL", category: "database" },
+  { name: "MongoDB", category: "database" },
+  { name: "Redis", category: "database" },
+  { name: "AWS", category: "cloud" },
+  { name: "GCP", category: "cloud" },
+  { name: "Docker", category: "devops" },
+  { name: "Kubernetes", category: "devops" },
+  { name: "Gen AI", category: "ai" },
+];
+
+function TechStackSection() {
+  const headingColor = useColorModeValue("gray.800", "gray.50");
+  const bgColor = useColorModeValue("white", "gray.900");
+  const borderColor = useColorModeValue("gray.200", "gray.800");
+  const textColor = useColorModeValue("gray.700", "gray.300");
+  const tagBg = useColorModeValue("gray.100", "gray.800");
+  const tagHoverBg = useColorModeValue("accent.50", "accent.900");
+  const accentColor = useColorModeValue("accent.600", "accent.400");
+
+  return (
+    <Box py={{ base: 12, md: 16 }}>
+      <VStack spacing={8} align="stretch">
+        <Heading
+          as="h2"
+          fontSize={{ base: "2xl", md: "3xl" }}
+          fontFamily="heading"
+          color={headingColor}
+          textAlign="center"
+        >
+          Tech Stack
+        </Heading>
+
+        <Text
+          color={textColor}
+          textAlign="center"
+          fontSize={{ base: "md", md: "lg" }}
+          maxW="lg"
+          mx="auto"
+        >
+          Technologies I've worked with throughout my career
+        </Text>
+
+        <Box
+          bg={bgColor}
+          borderRadius="2xl"
+          border="1px solid"
+          borderColor={borderColor}
+          p={{ base: 6, md: 8 }}
+          boxShadow="sm"
+        >
+          <Flex flexWrap="wrap" gap={3} justify="center">
+            {techStack.map((tech) => (
+              <Box
+                key={tech.name}
+                px={4}
+                py={2}
+                bg={tagBg}
+                borderRadius="full"
+                fontSize="sm"
+                fontWeight="medium"
+                color={textColor}
+                transition="all 0.2s"
+                cursor="default"
+                _hover={{ bg: tagHoverBg, color: accentColor }}
+              >
+                {tech.name}
+              </Box>
+            ))}
+          </Flex>
+        </Box>
+      </VStack>
+    </Box>
+  );
+}
 
 export default function HomePage() {
   return (
-    <div className="max-w-2xl mx-auto">
-      <div className="flex flex-col gap-16 md:gap-24">
-        {/* Profile Section */}
-        <div className="flex flex-col gap-8">
-          <div className="animate-in flex items-center gap-4" style={{animationDelay: "0.1s", animationFillMode: "both"}}>
-            <div className="relative h-16 w-16 overflow-hidden rounded-full bg-secondary">
-              <Image
-                src="/me.jpeg"
-                alt="Marcos Nikel"
-                width={64}
-                height={64}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <h1 className="animate-in text-3xl font-semibold tracking-tighter text-primary" style={{animationDelay: "0.2s", animationFillMode: "both"}}>
-              Software engineer, and open-source contributor.
-            </h1>
-            <p className="animate-in text-secondary" style={{animationDelay: "0.3s", animationFillMode: "both"}}>
-              I'm Marcos, a backend engineer focused on{" "}
-              <span className="font-semibold text-primary">Golang</span>,{" "}
-              <span className="font-semibold text-primary">AWS</span>, and{" "}
-              <span className="font-semibold text-primary">infrastructure tools</span>. 
-              I specialize in developing robust and scalable applications, leveraging advanced technologies to ensure high system reliability.
-            </p>
-          </div>
-
-          {/* Social Links */}
-          <div className="animate-in flex gap-4" style={{animationDelay: "0.4s", animationFillMode: "both"}}>
-            <a
-              href="https://x.com/marcosnikel_"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-secondary hover:text-primary transition-colors duration-200"
-              aria-label="Twitter"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-              </svg>
-            </a>
-            <a
-              href="https://github.com/marcossnikel"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-secondary hover:text-primary transition-colors duration-200"
-              aria-label="GitHub"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-              </svg>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/mnikel/"
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-secondary hover:text-primary transition-colors duration-200"
-              aria-label="LinkedIn"
-            >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-            </a>
-            <a
-              href="mailto:marcosnikeldev@gmail.com"
-              className="text-secondary hover:text-primary transition-colors duration-200"
-              aria-label="Email"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        {/* Photo Gallery */}
-        <div className="animate-in -mb-40 grid grid-cols-5 gap-4" style={{animationDelay: "0.5s", animationFillMode: "both"}}>
-          <div className="relative flex aspect-[9/10] w-full">
-            <Image
-              src="/rj.jpeg"
-              alt="Rio de Janeiro"
-              width={400}
-              height={445}
-              className="w-full rounded-xl object-cover"
-            />
-          </div>
-          <div className="relative flex aspect-[9/10] w-full">
-            <Image
-              src="/podium.jpeg"
-              alt="Podium celebration"
-              width={400}
-              height={445}
-              className="w-full rounded-xl object-cover"
-            />
-          </div>
-          <div className="relative flex aspect-[9/10] w-full">
-            <Image
-              src="/run.jpeg"
-              alt="Running"
-              width={400}
-              height={445}
-              className="w-full rounded-xl object-cover"
-            />
-          </div>
-          <div className="relative flex aspect-[9/10] w-full">
-            <Image
-              src="/stadium.jpeg"
-              alt="Stadium"
-              width={400}
-              height={445}
-              className="w-full rounded-xl object-cover"
-            />
-          </div>
-          <div className="relative flex aspect-[9/10] w-full bg-secondary rounded-xl"></div>
-        </div>
-
-        {/* Work Section */}
-        <div className="flex flex-col gap-16 md:gap-24">
-          <div className="flex flex-col gap-6">
-            <div className="animate-in flex items-center gap-2 text-primary" style={{animationDelay: "0.6s", animationFillMode: "both"}}>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 00-2 2H10a2 2 0 00-2-2V6m8 0h2a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h2" />
-              </svg>
-              <h2 className="text-sm font-medium">Work</h2>
-            </div>
-            
-            <div className="flex flex-col gap-6">
-              {/* Mercado Libre */}
-              <div className="animate-in flex items-center gap-3" style={{animationDelay: "0.7s", animationFillMode: "both"}}>
-                <div className="relative h-10 w-10 overflow-hidden rounded-full bg-secondary flex-shrink-0">
-                  <Image
-                    src="/mercadolivre.png"
-                    alt="Mercado Libre"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="text-sm font-medium text-primary">Mercado Libre</h3>
-                  <p className="text-sm text-secondary">Software Engineer</p>
-                </div>
-                <div className="ml-auto text-sm text-tertiary">2024 — Present</div>
-              </div>
-
-              {/* NowCM */}
-              <div className="animate-in flex items-center gap-3" style={{animationDelay: "0.8s", animationFillMode: "both"}}>
-                <div className="relative h-10 w-10 overflow-hidden rounded-full bg-secondary flex-shrink-0">
-                  <Image
-                    src="/nowcm.png"
-                    alt="NowCM"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="text-sm font-medium text-primary">NowCM</h3>
-                  <p className="text-sm text-secondary">Software Engineer</p>
-                </div>
-                <div className="ml-auto text-sm text-tertiary">2023 — 2024</div>
-              </div>
-
-              {/* Minutrade */}
-              <div className="animate-in flex items-center gap-3" style={{animationDelay: "0.9s", animationFillMode: "both"}}>
-                <div className="relative h-10 w-10 overflow-hidden rounded-full bg-secondary flex-shrink-0">
-                  <Image
-                    src="/minutrade.png"
-                    alt="Minutrade"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="text-sm font-medium text-primary">Minutrade</h3>
-                  <p className="text-sm text-secondary">Software Engineer</p>
-                </div>
-                <div className="ml-auto text-sm text-tertiary">2022 — 2023</div>
-              </div>
-            </div>
-
-            {/* Download CV */}
-            <div className="animate-in pt-4" style={{animationDelay: "1.0s", animationFillMode: "both"}}>
-              <Link 
-                href="/marcosnikel25.pdf" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-secondary hover:text-primary transition-colors duration-200"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Download CV</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container maxW="container.md" px={{ base: 4, md: 8 }}>
+      <HeroSection />
+      <AboutSection />
+      <CareerSection />
+      <TechStackSection />
+    </Container>
   );
 }
