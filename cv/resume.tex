@@ -1,0 +1,140 @@
+%-------------------------
+% Resume in Latex
+% Author : Marcos Nikel
+% Tailored for Design Engineer
+%------------------------
+
+\documentclass[letterpaper,10.5pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.6in}
+\addtolength{\textwidth}{1.2in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{2pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-4pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[1]{\item[$\bullet$] \small{{#1 \vspace{-3pt}}}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{4pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[topsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape Marcos Nikel} \\ \vspace{1pt}
+    \small\href{mailto:marcosnikeldev@gmail.com}{\underline{marcosnikeldev@gmail.com}} $|$
+    \href{https://linkedin.com/in/mnikel}{\underline{linkedin.com/in/mnikel}} $|$
+    \href{https://github.com/marcossnikel}{\underline{github.com/marcossnikel}} \\
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\resumeSubHeadingListStart
+\item \small Software Engineer who started in frontend, grew into full-stack, and is now gravitating back to design and user experience. I care about how interfaces feel, not just how they work. Experienced with React, TypeScript, Next.js, and building products where the details matter.
+\resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{Software Engineer}{Jan 2026 -- Present}
+{Salsa}{Remote}
+\resumeItemListStart
+\resumeItem{Built the end-to-end UI and backend for US tax filings across all states, serving 100K+ workers. Designed a clear interface for the compliance team to select employers, review filing data, and run submissions in batches.}
+\resumeItem{Collaborated with a designer from scratch on an audit system to track all changes within the platform. Worked through information density, filters, and human-readable descriptions, reducing CX friction by over 50\%.}
+\resumeItem{Implemented a proactive validation system that catches filing issues before they happen and alerts via Slack in real time, avoiding surprises with tax deadlines.}
+\resumeItemListEnd
+
+\resumeSubheading
+{Software Engineer}{Sep 2024 -- Jan 2026}
+{Mercado Libre}{S\~ao Paulo, Brazil}
+\resumeItemListStart
+\resumeItem{Led the frontend implementation of a full i18n system, building React components and Node.js services for multi-region accessibility.}
+\resumeItem{Built and maintained React interfaces with TypeScript, focusing on type safety, responsive design, and cross-browser consistency.}
+\resumeItem{Optimized high-traffic Node.js/Golang services handling 500K RPM, reducing API response times by 20ms.}
+\resumeItemListEnd
+
+\resumeSubheading
+{Software Engineer}{Dec 2023 -- Aug 2024}
+{NowCM}{Luxembourg, Remote}
+\resumeItemListStart
+\resumeItem{Built full-stack web applications using React with TypeScript and Node.js APIs.}
+\resumeItem{Improved frontend performance with lazy loading and code splitting, reducing page load times by 40\%.}
+\resumeItem{Designed and implemented RESTful APIs with authentication and validation for production applications.}
+\resumeItemListEnd
+
+\resumeSubheading
+{Software Engineer}{Jun 2022 -- Dec 2023}
+{Minutrade}{S\~ao Paulo, Brazil}
+\resumeItemListStart
+\resumeItem{Developed React dashboards with real-time data visualization for internal teams.}
+\resumeItem{Created a reusable React component library with a consistent design system used across multiple projects.}
+\resumeItem{Built scalable Node.js APIs with caching and integrated AWS S3 for seamless file management experiences.}
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+\resumeSubheading
+{BSc Computer Science}{Feb 2022 -- Jun 2025}
+{Anhembi Morumbi University}{S\~ao Paulo, Brazil}
+\resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\resumeSubHeadingListStart
+\item \small \textbf{Frontend}: React, TypeScript, Next.js, Tailwind CSS, HTML/CSS, Figma
+\item \small \textbf{Backend}: Node.js, Golang, RESTful APIs, PostgreSQL, MongoDB, Redis
+\item \small \textbf{Cloud/DevOps}: AWS, GCP, Docker, Kubernetes, CI/CD, GitHub Actions
+\resumeSubHeadingListEnd
+
+%-----------LANGUAGES-----------
+\section{Languages}
+\resumeSubHeadingListStart
+\item \small English (C1) $|$ Portuguese (Native) $|$ Spanish (Intermediate)
+\resumeSubHeadingListEnd
+
+\end{document}
