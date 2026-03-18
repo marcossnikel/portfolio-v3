@@ -1,9 +1,10 @@
-import { Box, Container, Heading, Text, VStack, HStack, Icon } from "@chakra-ui/react";
-import { Link } from "@chakra-ui/next-js";
-import { getArticleBySlug, getAllArticleSlugs } from "@/lib/articles";
-import { MarkdownRenderer } from "@/components/MarkdownRenderer";
-import { notFound } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { MarkdownRenderer } from "@/components/MarkdownRenderer";
+import { Card, CardContent } from "@/components/ui/card";
+import { getAllArticleSlugs, getArticleBySlug } from "@/lib/articles";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -14,7 +15,9 @@ export async function generateStaticParams() {
   return slugs.map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
 
@@ -28,14 +31,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-function BackArrow() {
-  return (
-    <Icon viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} boxSize={4}>
-      <path d="M19 12H5M12 19l-7-7 7-7" />
-    </Icon>
-  );
-}
-
 export default async function ArticlePage({ params }: PageProps) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
@@ -45,58 +40,37 @@ export default async function ArticlePage({ params }: PageProps) {
   }
 
   return (
-    <Container maxW="container.md" px={{ base: 4, md: 8 }} py={{ base: 8, md: 12 }}>
-      <VStack spacing={8} align="stretch">
+    <div className="animate-fade-in mx-auto max-w-2xl px-6 py-8 md:py-12">
+      <div className="flex flex-col gap-8">
         <Link
           href="/blog"
-          display="inline-flex"
-          alignItems="center"
-          gap={2}
-          fontSize="sm"
-          fontWeight="medium"
-          color={{ base: "gray.600", _dark: "gray.400" }}
-          _hover={{ color: { base: "accent.600", _dark: "accent.400" } }}
-          w="fit-content"
+          className="inline-flex w-fit cursor-pointer items-center gap-2 text-sm font-medium text-muted-foreground transition-colors duration-200 hover:text-foreground"
         >
-          <BackArrow />
+          <ArrowLeft className="size-4" />
           Back to Blog
         </Link>
 
-        <VStack spacing={4} align="stretch">
+        <div className="flex flex-col gap-3">
           {article.date && (
-            <Text
-              fontSize="sm"
-              color={{ base: "gray.500", _dark: "gray.500" }}
-              fontFamily="mono"
-            >
+            <time className="font-mono text-xs text-muted-foreground">
               {new Date(article.date).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
-            </Text>
+            </time>
           )}
-          <Heading
-            as="h1"
-            fontSize={{ base: "2xl", md: "4xl" }}
-            fontFamily="heading"
-            color={{ base: "gray.800", _dark: "gray.50" }}
-            lineHeight="shorter"
-          >
+          <h1 className="font-heading text-2xl font-bold tracking-tight md:text-4xl">
             {article.title}
-          </Heading>
-        </VStack>
+          </h1>
+        </div>
 
-        <Box
-          bg={{ base: "white", _dark: "gray.900" }}
-          borderRadius="2xl"
-          border="1px solid"
-          borderColor={{ base: "gray.200", _dark: "gray.800" }}
-          p={{ base: 6, md: 10 }}
-        >
-          <MarkdownRenderer content={article.content} />
-        </Box>
-      </VStack>
-    </Container>
+        <Card>
+          <CardContent className="p-6 md:p-10">
+            <MarkdownRenderer content={article.content} />
+          </CardContent>
+        </Card>
+      </div>
+    </div>
   );
 }

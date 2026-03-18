@@ -1,6 +1,29 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Providers } from "@/components/Providers";
+import { JetBrains_Mono, Plus_Jakarta_Sans, Syne } from "next/font/google";
+import { ThemeProvider } from "next-themes";
+import { Footer } from "@/components/Footer";
+import { Navigation } from "@/components/Navigation";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import "./globals.css";
+
+const heading = Syne({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const body = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -8,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s | Marcos Nikel",
   },
   description:
-    "Software Engineer based in São Paulo. Marathon runner, occasional weight lifter, full-time bug creator and fixer.",
+    "Software Engineer based in Brazil. Marathon runner, occasional weight lifter, full-time bug creator and fixer.",
 };
 
 export default function RootLayout({
@@ -17,21 +40,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${heading.variable} ${body.variable} ${mono.variable}`}
+    >
       <body suppressHydrationWarning>
-        <Providers>{children}</Providers>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TooltipProvider>
+            <div className="flex min-h-dvh flex-col">
+              <Navigation />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
+          </TooltipProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

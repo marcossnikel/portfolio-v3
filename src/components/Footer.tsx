@@ -1,24 +1,14 @@
-"use client";
-
-import { Box, Container, Text, useColorModeValue } from "@chakra-ui/react";
+import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
-  const borderColor = useColorModeValue("gray.200", "gray.800");
-  const textColor = useColorModeValue("gray.500", "gray.500");
-
   return (
-    <Box
-      as="footer"
-      borderTop="1px"
-      borderColor={borderColor}
-      py={8}
-      mt="auto"
-    >
-      <Container maxW="container.lg">
-        <Text fontSize="sm" color={textColor} textAlign="center">
-          © {new Date().getFullYear()} Marcos Nikel. Built with Next.js & Chakra UI.
-        </Text>
-      </Container>
-    </Box>
+    <footer className="mt-auto">
+      <div className="mx-auto max-w-2xl px-6">
+        <Separator />
+        <p className="py-8 text-center text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} Marcos Nikel
+        </p>
+      </div>
+    </footer>
   );
 }
