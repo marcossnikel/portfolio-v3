@@ -2,152 +2,92 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import {
-  Box,
-  Heading,
-  Text,
-  Code,
-  UnorderedList,
-  OrderedList,
-  ListItem,
-  Divider,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { Link } from "@chakra-ui/next-js";
+import { Separator } from "@/components/ui/separator";
 
 interface MarkdownRendererProps {
   content: string;
 }
 
 export function MarkdownRenderer({ content }: MarkdownRendererProps) {
-  const codeBlockBg = useColorModeValue("gray.100", "gray.800");
-  const inlineCodeBg = useColorModeValue("gray.100", "gray.800");
-  const textColor = useColorModeValue("gray.700", "gray.300");
-  const headingColor = useColorModeValue("gray.800", "gray.100");
-  const accentColor = useColorModeValue("accent.600", "accent.400");
-
   return (
-    <Box className="markdown-content">
+    <div className="markdown-content">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <Heading
-              as="h1"
-              fontSize="3xl"
-              fontFamily="heading"
-              color={headingColor}
-              mt={8}
-              mb={4}
-            >
+            <h1 className="mb-4 mt-8 font-heading text-3xl font-bold tracking-tight">
               {children}
-            </Heading>
+            </h1>
           ),
           h2: ({ children }) => (
-            <Heading
-              as="h2"
-              fontSize="2xl"
-              fontFamily="heading"
-              color={headingColor}
-              mt={8}
-              mb={4}
-            >
+            <h2 className="mb-4 mt-8 font-heading text-2xl font-bold tracking-tight">
               {children}
-            </Heading>
+            </h2>
           ),
           h3: ({ children }) => (
-            <Heading
-              as="h3"
-              fontSize="xl"
-              fontFamily="heading"
-              color={headingColor}
-              mt={6}
-              mb={3}
-            >
+            <h3 className="mb-3 mt-6 font-heading text-xl font-semibold tracking-tight">
               {children}
-            </Heading>
+            </h3>
           ),
           p: ({ children }) => (
-            <Text color={textColor} mb={4} lineHeight="tall" fontSize="lg">
+            <p className="mb-4 text-muted-foreground leading-relaxed md:text-lg">
               {children}
-            </Text>
+            </p>
           ),
           a: ({ href, children }) => (
-            <Link href={href || "#"} color={accentColor} fontWeight="medium">
+            <a
+              href={href || "#"}
+              className="cursor-pointer font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors duration-200 hover:decoration-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {children}
-            </Link>
+            </a>
           ),
           ul: ({ children }) => (
-            <UnorderedList color={textColor} mb={4} pl={4} spacing={2}>
+            <ul className="mb-4 flex flex-col gap-2 pl-6 text-muted-foreground list-disc marker:text-muted-foreground/50">
               {children}
-            </UnorderedList>
+            </ul>
           ),
           ol: ({ children }) => (
-            <OrderedList color={textColor} mb={4} pl={4} spacing={2}>
+            <ol className="mb-4 flex flex-col gap-2 pl-6 text-muted-foreground list-decimal marker:text-muted-foreground/50">
               {children}
-            </OrderedList>
+            </ol>
           ),
           li: ({ children }) => (
-            <ListItem fontSize="lg" lineHeight="tall">
-              {children}
-            </ListItem>
+            <li className="leading-relaxed md:text-lg">{children}</li>
           ),
           code: ({ className, children }) => {
             const isBlock = className?.includes("language-");
             if (isBlock) {
               return (
-                <Box
-                  as="pre"
-                  bg={codeBlockBg}
-                  p={4}
-                  borderRadius="lg"
-                  overflowX="auto"
-                  mb={4}
-                  fontSize="sm"
-                  fontFamily="mono"
-                >
-                  <Code bg="transparent" display="block" whiteSpace="pre">
-                    {children}
-                  </Code>
-                </Box>
+                <pre className="mb-4 overflow-x-auto rounded-lg bg-secondary p-4 font-mono text-sm">
+                  <code className="block whitespace-pre">{children}</code>
+                </pre>
               );
             }
             return (
-              <Code
-                bg={inlineCodeBg}
-                px={2}
-                py={1}
-                borderRadius="md"
-                fontSize="sm"
-              >
+              <code className="rounded-md bg-secondary px-1.5 py-0.5 font-mono text-sm">
                 {children}
-              </Code>
+              </code>
             );
           },
           pre: ({ children }) => <>{children}</>,
-          hr: () => <Divider my={8} />,
+          hr: () => <Separator className="my-8" />,
           blockquote: ({ children }) => (
-            <Box
-              borderLeftWidth={4}
-              borderLeftColor={accentColor}
-              pl={4}
-              py={2}
-              my={4}
-              fontStyle="italic"
-              color={textColor}
-            >
+            <blockquote className="my-4 border-l-4 border-primary/30 py-1 pl-4 italic text-muted-foreground">
               {children}
-            </Box>
+            </blockquote>
           ),
           strong: ({ children }) => (
-            <Text as="strong" fontWeight="bold" color={headingColor}>
+            <strong className="font-semibold text-foreground">
               {children}
-            </Text>
+            </strong>
           ),
         }}
       >
         {content}
       </ReactMarkdown>
-    </Box>
+    </div>
   );
 }

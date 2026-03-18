@@ -1,76 +1,70 @@
 "use client";
 
-import {
-  Box,
-  Container,
-  Flex,
-  HStack,
-  IconButton,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { Link } from "@chakra-ui/next-js";
-import { MoonIcon, SunIcon } from "./Icons";
+import { Moon, Sun } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function Navigation() {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const bgColor = useColorModeValue("whiteAlpha.800", "blackAlpha.600");
-  const borderColor = useColorModeValue("gray.200", "gray.800");
+  const pathname = usePathname();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const links = [
+    { href: "/", label: "Home" },
+    { href: "/blog", label: "Blog" },
+  ];
 
   return (
-    <Box
-      as="nav"
-      position="sticky"
-      top={0}
-      zIndex={100}
-      backdropFilter="blur(10px)"
-      bg={bgColor}
-      borderBottom="1px"
-      borderColor={borderColor}
-    >
-      <Container maxW="container.lg" py={4}>
-        <Flex justify="space-between" align="center">
-          <Link
-            href="/"
-            fontWeight="bold"
-            fontSize="xl"
-            color={useColorModeValue("accent.600", "accent.400")}
-            _hover={{ textDecoration: "none", color: useColorModeValue("accent.500", "accent.300") }}
-          >
-            Marcos Nikel
-          </Link>
+    <nav className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-2xl items-center justify-between px-6 py-4">
+        <Link
+          href="/"
+          className="font-heading text-lg font-bold tracking-tight text-foreground transition-colors duration-200 hover:text-primary"
+        >
+          MN
+        </Link>
 
-          <HStack spacing={6}>
+        <div className="flex items-center gap-6">
+          {links.map((link) => (
             <Link
-              href="/"
-              fontSize="sm"
-              fontWeight="medium"
-              color={useColorModeValue("gray.600", "gray.300")}
-              _hover={{ color: useColorModeValue("accent.600", "accent.400") }}
+              key={link.href}
+              href={link.href}
+              className={cn(
+                "text-sm font-medium transition-colors duration-200",
+                pathname === link.href
+                  ? "text-foreground"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
             >
-              Home
+              {link.label}
             </Link>
-            <Link
-              href="/blog"
-              fontSize="sm"
-              fontWeight="medium"
-              color={useColorModeValue("gray.600", "gray.300")}
-              _hover={{ color: useColorModeValue("accent.600", "accent.400") }}
-            >
-              Blog
-            </Link>
-            <IconButton
-              aria-label="Toggle color mode"
-              icon={colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
-              onClick={toggleColorMode}
-              variant="ghost"
-              size="sm"
-              color={useColorModeValue("gray.600", "gray.300")}
-              _hover={{ bg: useColorModeValue("gray.100", "gray.800") }}
-            />
-          </HStack>
-        </Flex>
-      </Container>
-    </Box>
+          ))}
+
+          <button
+            type="button"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="cursor-pointer rounded-md p-2 text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground"
+            aria-label="Toggle theme"
+          >
+            {mounted ? (
+              theme === "dark" ? (
+                <Sun className="size-4" />
+              ) : (
+                <Moon className="size-4" />
+              )
+            ) : (
+              <div className="size-4" />
+            )}
+          </button>
+        </div>
+      </div>
+    </nav>
   );
 }

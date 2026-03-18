@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import matter from "gray-matter";
 
 const articlesDirectory = path.join(process.cwd(), "src/content/articles");
@@ -31,7 +31,7 @@ export function getAllArticles(): Article[] {
         slug,
         title: data.title || slug.replace(/-/g, " "),
         date: data.date || "",
-        excerpt: data.excerpt || content.substring(0, 160) + "...",
+        excerpt: data.excerpt || `${content.substring(0, 160)}...`,
         content,
       };
     })
@@ -54,7 +54,7 @@ export function getArticleBySlug(slug: string): Article | null {
     slug,
     title: data.title || slug.replace(/-/g, " "),
     date: data.date || "",
-    excerpt: data.excerpt || content.substring(0, 160) + "...",
+    excerpt: data.excerpt || `${content.substring(0, 160)}...`,
     content,
   };
 }
