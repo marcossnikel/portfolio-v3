@@ -22,14 +22,14 @@ export function CopyEmail({ email }: { email: string }) {
     <button
       type="button"
       onClick={copy}
-      className="group inline-flex cursor-pointer items-center gap-2 rounded-md border border-border bg-card px-3.5 py-2 font-mono text-xs text-foreground transition-colors duration-200 hover:border-primary/50 hover:bg-secondary"
+      className="group inline-flex cursor-pointer items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm text-foreground transition-colors duration-200 hover:bg-secondary"
       aria-label={`Copy email address ${email}`}
     >
       {email}
       {copied ? (
-        <Check className="size-3.5 text-primary" />
+        <Check className="size-4 text-primary" />
       ) : (
-        <Copy className="size-3.5 text-muted-foreground transition-colors group-hover:text-foreground" />
+        <Copy className="size-4 text-muted-foreground transition-colors group-hover:text-foreground" />
       )}
     </button>
   );

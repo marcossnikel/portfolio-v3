@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const links = [
   { href: "/#work", label: "Work" },
-  { href: "/#running", label: "Running" },
+  { href: "/#experience", label: "Experience" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -20,13 +20,13 @@ export function Navigation() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-[44rem] items-center justify-between px-6 py-3.5">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
+      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 md:px-12">
         <Link
           href="/"
-          className="font-heading text-lg italic tracking-tight text-foreground transition-colors duration-200 hover:text-primary"
+          className="whitespace-nowrap text-sm font-semibold tracking-tight text-foreground"
         >
-          marcos nikel
+          Marcos Nikel
         </Link>
 
         <div className="flex items-center gap-1">
@@ -34,7 +34,7 @@ export function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-md px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground sm:px-3"
+              className="rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground sm:px-3"
             >
               {link.label}
             </Link>
@@ -43,7 +43,7 @@ export function Navigation() {
           <button
             type="button"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="ml-1 cursor-pointer rounded-md p-2 text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground"
+            className="ml-1 cursor-pointer rounded-lg p-2 text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground"
             aria-label="Toggle theme"
           >
             {mounted ? (

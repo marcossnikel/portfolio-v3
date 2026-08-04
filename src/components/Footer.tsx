@@ -1,17 +1,15 @@
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-border/60">
-      <div className="mx-auto flex max-w-[44rem] flex-col gap-2 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-        <p className="font-mono text-xs text-muted-foreground">
-          &copy; {new Date().getFullYear()} Marcos Nikel · Sao Paulo, Brazil
+    <footer className="mt-auto border-t border-border">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-6 py-8 sm:flex-row sm:items-center sm:justify-between md:px-12">
+        <p className="text-sm text-muted-foreground">
+          &copy; {new Date().getFullYear()} Marcos Nikel
         </p>
         <a
-          href="https://github.com/marcossnikel/portfolio-v3"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-mono text-xs text-muted-foreground transition-colors duration-200 hover:text-foreground"
+          href="mailto:marcosnikeldev@gmail.com"
+          className="text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
         >
-          view source
+          marcosnikeldev@gmail.com
         </a>
       </div>
     </footer>
