@@ -57,7 +57,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${body.variable} ${mono.variable}`}
     >
-      <body suppressHydrationWarning>
+      <body suppressHydrationWarning className="noise">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

@@ -133,16 +133,17 @@ function Section({
 
 function HeroSection() {
   return (
-    <section className="animate-fade-in">
-      <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-16 md:grid-cols-[1fr_auto] md:px-12 md:py-24">
+    <section className="relative overflow-hidden">
+      <div aria-hidden="true" className="hero-glow absolute inset-0" />
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-20 md:grid-cols-[1fr_auto] md:px-12 md:py-28">
         <div>
-          <h1 className="text-4xl font-semibold tracking-tight text-foreground md:text-5xl">
+          <h1 className="animate-fade-in-up text-hero-gradient pb-1 text-5xl font-semibold tracking-tight md:text-6xl">
             Marcos Nikel
           </h1>
-          <p className="mt-3 text-base text-muted-foreground">
+          <p className="animate-fade-in-up mt-3 text-base text-muted-foreground [animation-delay:80ms]">
             Software engineer · Sao Paulo, Brazil
           </p>
-          <p className="mt-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground">
+          <p className="animate-fade-in-up mt-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground [animation-delay:160ms]">
             Backend-focused engineer with 4+ years building fintech systems:
             payroll and tax compliance infrastructure at Salsa, high-traffic
             services at Mercado Libre, and document automation for European
@@ -150,7 +151,7 @@ function HeroSection() {
             React when needed.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="animate-fade-in-up mt-8 flex flex-wrap items-center gap-3 [animation-delay:240ms]">
             <CopyEmail email={EMAIL} />
             <a
               href="/marcos-nikel-resume.pdf"
@@ -178,14 +179,16 @@ function HeroSection() {
           </div>
         </div>
 
-        <Image
-          src="/me.jpeg"
-          alt="Marcos Nikel"
-          width={264}
-          height={330}
-          priority
-          className="hidden aspect-[4/5] w-64 rounded-xl border border-border object-cover object-[50%_30%] md:block"
-        />
+        <div className="photo-glow hidden rounded-2xl bg-gradient-to-b from-foreground/15 to-foreground/5 p-px md:block">
+          <Image
+            src="/me.jpeg"
+            alt="Marcos Nikel"
+            width={264}
+            height={330}
+            priority
+            className="aspect-[4/5] w-64 rounded-[calc(1rem-1px)] object-cover object-[50%_30%]"
+          />
+        </div>
       </div>
     </section>
   );
@@ -198,7 +201,7 @@ function WorkSection() {
         {work.map((item) => (
           <article
             key={item.title}
-            className="grid gap-2 py-6 md:grid-cols-[1fr_220px] md:gap-8"
+            className="-mx-4 grid gap-2 rounded-lg px-4 py-6 transition-colors duration-200 hover:bg-secondary/60 md:grid-cols-[1fr_220px] md:gap-8"
           >
             <div className="md:order-1">
               <h3 className="text-base font-medium text-foreground">
@@ -228,7 +231,7 @@ function ExperienceSection() {
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-4 py-5"
+            className="group -mx-4 flex items-center gap-4 rounded-lg px-4 py-5 transition-colors duration-200 hover:bg-secondary/60"
           >
             <div className="flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-border bg-white">
               <Image
@@ -283,7 +286,7 @@ function AboutSection() {
             alt={photo.alt}
             width={400}
             height={500}
-            className="aspect-[4/5] w-full rounded-lg border border-border object-cover"
+            className="aspect-[4/5] w-full rounded-lg border border-border object-cover transition-[filter] duration-300 hover:brightness-110"
           />
         ))}
       </div>

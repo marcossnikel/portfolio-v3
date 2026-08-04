@@ -122,6 +122,42 @@
   --animate-scale-in: scale-in 0.5s ease-out both;
 }
 
+:root {
+  --hero-text-gradient: linear-gradient(
+    97deg,
+    oklch(0.145 0 0) 30%,
+    oklch(0.145 0 0 / 55%) 100%
+  );
+  --hero-glow:
+    radial-gradient(
+      1000px 480px at 18% -12%,
+      oklch(0.5555 0.1618 251.82 / 7%),
+      transparent 70%
+    ),
+    radial-gradient(800px 400px at 85% 8%, oklch(0 0 0 / 4%), transparent 70%);
+  --photo-glow: 0 24px 80px oklch(0 0 0 / 18%);
+}
+
+.dark {
+  --hero-text-gradient: linear-gradient(
+    97deg,
+    #ffffff 30%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+  --hero-glow:
+    radial-gradient(
+      1000px 480px at 18% -12%,
+      oklch(0.7593 0.1229 250.5 / 9%),
+      transparent 70%
+    ),
+    radial-gradient(
+      800px 420px at 85% 8%,
+      rgba(255, 255, 255, 0.05),
+      transparent 70%
+    );
+  --photo-glow: 0 0 90px oklch(0.7593 0.1229 250.5 / 10%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -132,6 +168,32 @@
   html {
     @apply scroll-smooth font-sans;
   }
+}
+
+@layer utilities {
+  .text-hero-gradient {
+    background: var(--hero-text-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero-glow {
+    background: var(--hero-glow);
+  }
+  .photo-glow {
+    box-shadow: var(--photo-glow);
+  }
+}
+
+/* Noise texture for atmospheric depth (Resend brand: textures) */
+.noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @keyframes fade-in {
