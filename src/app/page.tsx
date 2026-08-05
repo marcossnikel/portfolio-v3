@@ -48,16 +48,16 @@ const work: WorkItem[] = [
       "Redesigned quarterly tax file generation from a synchronous, memory-bound process into a chunked async pipeline with retries and dead-lettering, validated against the previous output before cutover.",
   },
   {
-    title: "Partner audit log",
-    context: "Salsa · 2026",
-    description:
-      "Led the delivery of a partner-facing audit log: multi-tenant GraphQL API, React UI, and public documentation, rolled out from the first partner to all of them.",
-  },
-  {
     title: "User profile services",
     context: "Mercado Libre · 2024 to 2026",
     description:
       "Owned the Go services behind user profile management at Mercado Libre. Every profile access on the platform went through them, across every Latin American country where Mercado Libre operates, at 500K requests per minute. Refactored the hot path for lower latency and added retries, circuit breakers, rate limiting, and caching to keep it resilient.",
+  },
+  {
+    title: "Debt issuance, minus the bureaucracy",
+    context: "NowCM · 2024",
+    description:
+      "Worked on the document automation platform behind NowCM's debt issuance flow for European banks, turning bond contract generation from a slow manual legal process into an automated one. Optimized the generation hot path with Go concurrency primitives and built the CI/CD pipelines deploying it to Kubernetes.",
   },
 ];
 
@@ -99,17 +99,33 @@ const career: CareerItem[] = [
     company: "Minutrade",
     role: "Software Engineer",
     period: "2022 - 2024",
-    note: "Node.js APIs for loyalty and rewards",
+    note: "Node.js APIs for loyalty and rewards, integrating with banks like Banco do Brasil",
     logo: "/minutrade.png",
     url: "https://minu.co",
   },
 ];
 
 const photos = [
-  { src: "/run.jpeg", alt: "Marcos running a race in Sao Paulo" },
-  { src: "/podium.jpeg", alt: "Marcos on a race podium with a trophy" },
-  { src: "/stadium.jpeg", alt: "Marcos at a football stadium" },
-  { src: "/rj.jpeg", alt: "Marcos on a rooftop in Rio de Janeiro" },
+  {
+    src: "/race-asics.jpeg",
+    alt: "Marcos mid-race at the Asics Golden Run in Sao Paulo",
+    caption: "Asics Golden Run, Sao Paulo",
+  },
+  {
+    src: "/race-finish.jpeg",
+    alt: "Marcos sprinting on the blue finish carpet of a race",
+    caption: "chasing the PR",
+  },
+  {
+    src: "/race-medal.jpeg",
+    alt: "Marcos holding a 30K finisher medal",
+    caption: "30K, longest one yet",
+  },
+  {
+    src: "/coffee.jpeg",
+    alt: "An espresso held up against the sunrise",
+    caption: "the other fuel",
+  },
 ];
 
 function Section({
@@ -144,11 +160,35 @@ function HeroSection() {
             Software engineer · Sao Paulo, Brazil
           </p>
           <p className="animate-fade-in-up mt-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground [animation-delay:160ms]">
-            Backend-focused engineer with 4+ years building fintech systems:
-            payroll and tax compliance infrastructure at Salsa, high-traffic
-            services at Mercado Libre, and document automation for European
-            banks at NowCM. Comfortable across the stack with TypeScript and
-            React when needed.
+            Backend engineer from the interior of Sao Paulo. My core is Go and
+            distributed systems, and I like staying close to the product,
+            working across the stack with React and Next.js when the problem
+            calls for it. Over the last four years I have built payroll tax
+            infrastructure at Salsa, profile services used across Latin America
+            at Mercado Libre, and debt issuance tooling for European banks at
+            NowCM.
+          </p>
+
+          <p className="animate-fade-in-up mt-5 text-sm text-muted-foreground [animation-delay:200ms]">
+            Now: training for my first marathon in{" "}
+            <span className="relative inline-block text-foreground">
+              Valencia
+              <svg
+                className="scribble"
+                viewBox="0 0 110 42"
+                fill="none"
+                aria-hidden="true"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M12 24 C10 10, 44 3, 74 6 C98 8, 106 16, 103 25 C100 35, 68 40, 38 38 C16 36, 6 31, 9 22"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </span>
+            , December 2026.
           </p>
 
           <div className="animate-fade-in-up mt-8 flex flex-wrap items-center gap-3 [animation-delay:240ms]">
@@ -266,28 +306,39 @@ function AboutSection() {
     <Section id="about" title="About">
       <div className="flex max-w-[70ch] flex-col gap-4 text-base leading-relaxed text-muted-foreground">
         <p>
-          I got into computers early, spent my childhood gaming, and wrote my
-          first code at 10 while setting up a game server. I started college in
-          nutrition, switched to computer science a year later, and turned the
-          hobby into a career.
+          I was born and raised in the interior of Sao Paulo, got into computers
+          early, and wrote my first code at 10 while setting up a game server. I
+          still started college in nutrition; one year in I admitted the
+          obvious, switched to computer science, and turned the hobby into a
+          career.
         </p>
         <p>
-          I like being close to the product, collaborating with the people
-          around me, and working on systems where correctness matters. Outside
-          of work I lift and run, and I am currently training for my first
-          marathon.
+          Sports shaped me before software did. I played volleyball for my
+          city's semi-professional team for years, and the discipline that takes
+          is the same one I bring to work. These days it goes into running, with
+          my first marathon coming up in Valencia.
+        </p>
+        <p>
+          I have worked with people from Luxembourg, Colombia, Argentina,
+          Uruguay, France, Spain, the UK, the US, Australia, and Canada, and
+          that mix is my favorite part of this job. Portuguese and English, plus
+          enough Spanish to keep up. Fueled by an unreasonable amount of coffee.
         </p>
       </div>
       <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
         {photos.map((photo) => (
-          <Image
-            key={photo.src}
-            src={photo.src}
-            alt={photo.alt}
-            width={400}
-            height={500}
-            className="aspect-[4/5] w-full rounded-lg border border-border object-cover transition-[filter] duration-300 hover:brightness-110"
-          />
+          <figure key={photo.src}>
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              width={400}
+              height={500}
+              className="aspect-[4/5] w-full rounded-lg border border-border object-cover transition-[filter] duration-300 hover:brightness-110"
+            />
+            <figcaption className="mt-2 text-xs text-muted-foreground">
+              {photo.caption}
+            </figcaption>
+          </figure>
         ))}
       </div>
     </Section>
