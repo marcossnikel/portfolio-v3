@@ -26,11 +26,11 @@ export const metadata: Metadata = {
     template: "%s | Marcos Nikel",
   },
   description:
-    "Software engineer based in Sao Paulo, Brazil. Backend-focused, with experience in payroll infrastructure, fintech, and high-traffic services.",
+    "Full-stack software engineer from Sao Paulo, Brazil, strongest on the backend: Go, distributed systems, payroll infrastructure, and high-traffic services.",
   openGraph: {
     title: "Marcos Nikel - Software Engineer",
     description:
-      "Software engineer based in Sao Paulo, Brazil. Backend-focused, with experience in payroll infrastructure, fintech, and high-traffic services.",
+      "Full-stack software engineer from Sao Paulo, Brazil, strongest on the backend: Go, distributed systems, payroll infrastructure, and high-traffic services.",
     url: "https://marcosnikel.com",
     siteName: "Marcos Nikel",
     images: [{ url: "/me.jpeg", width: 768, height: 1024 }],
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Marcos Nikel - Software Engineer",
     description:
-      "Software engineer based in Sao Paulo, Brazil. Backend-focused, with experience in payroll infrastructure, fintech, and high-traffic services.",
+      "Full-stack software engineer from Sao Paulo, Brazil, strongest on the backend: Go, distributed systems, payroll infrastructure, and high-traffic services.",
     images: ["/me.jpeg"],
   },
 };

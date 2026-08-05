@@ -107,6 +107,16 @@ const career: CareerItem[] = [
 
 const photos = [
   {
+    src: "/volleyball-match.jpeg",
+    alt: "Marcos spiking over the net in a volleyball match",
+    caption: "city team days",
+  },
+  {
+    src: "/volleyball-jump.jpeg",
+    alt: "Marcos jumping to attack in an indoor volleyball game",
+    caption: "still jumping",
+  },
+  {
     src: "/race-asics.jpeg",
     alt: "Marcos mid-race at the Asics Golden Run in Sao Paulo",
     caption: "Asics Golden Run, Sao Paulo",
@@ -160,13 +170,13 @@ function HeroSection() {
             Software engineer · Sao Paulo, Brazil
           </p>
           <p className="animate-fade-in-up mt-6 max-w-[60ch] text-base leading-relaxed text-muted-foreground [animation-delay:160ms]">
-            Backend engineer from the interior of Sao Paulo. My core is Go and
-            distributed systems, and I like staying close to the product,
-            working across the stack with React and Next.js when the problem
-            calls for it. Over the last four years I have built payroll tax
-            infrastructure at Salsa, profile services used across Latin America
-            at Mercado Libre, and debt issuance tooling for European banks at
-            NowCM.
+            Full-stack engineer from the interior of Sao Paulo, strongest on the
+            backend: Go, distributed systems, and APIs that hold up under load.
+            I like owning features end to end, React and Next.js included, and
+            staying close to the product. Over the last four years I have built
+            payroll tax infrastructure at Salsa, profile services used across
+            Latin America at Mercado Libre, and debt issuance tooling for
+            European banks at NowCM.
           </p>
 
           <p className="animate-fade-in-up mt-5 text-sm text-muted-foreground [animation-delay:200ms]">
@@ -325,7 +335,7 @@ function AboutSection() {
           enough Spanish to keep up. Fueled by an unreasonable amount of coffee.
         </p>
       </div>
-      <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3">
         {photos.map((photo) => (
           <figure key={photo.src}>
             <Image
