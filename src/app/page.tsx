@@ -54,10 +54,10 @@ const work: WorkItem[] = [
       "Led the delivery of a partner-facing audit log: multi-tenant GraphQL API, React UI, and public documentation, rolled out from the first partner to all of them.",
   },
   {
-    title: "High-traffic Go services",
+    title: "User profile services",
     context: "Mercado Libre · 2024 to 2026",
     description:
-      "Refactored a Go service handling 500K requests per minute and improved resilience across critical paths with retries, circuit breakers, rate limiting, and caching.",
+      "Owned the Go services behind user profile management at Mercado Libre. Every profile access on the platform went through them, across every Latin American country where Mercado Libre operates, at 500K requests per minute. Refactored the hot path for lower latency and added retries, circuit breakers, rate limiting, and caching to keep it resilient.",
   },
 ];
 
