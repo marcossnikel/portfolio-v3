@@ -7,7 +7,9 @@ import { useEffect, useState } from "react";
 
 const links = [
   { href: "/#work", label: "Work" },
-  { href: "/#experience", label: "Experience" },
+  { href: "/#projects", label: "Projects", desktopOnly: true },
+  { href: "/#experience", label: "Experience", desktopOnly: true },
+  { href: "/#uses", label: "Uses", desktopOnly: true },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -34,7 +36,9 @@ export function Navigation() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground sm:px-3"
+              className={`rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground sm:px-3 ${
+                link.desktopOnly ? "hidden md:inline-flex" : ""
+              }`}
             >
               {link.label}
             </Link>

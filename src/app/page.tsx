@@ -2,6 +2,7 @@ import { ArrowUpRight, FileText, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 import { ContactForm } from "@/components/ContactForm";
 import { CopyEmail } from "@/components/CopyEmail";
+import { PronounceName } from "@/components/PronounceName";
 
 const EMAIL = "marcosnikeldev@gmail.com";
 
@@ -141,17 +142,26 @@ const photos = [
 function Section({
   id,
   title,
+  statement,
   children,
 }: {
   id?: string;
   title: string;
+  statement?: string;
   children: React.ReactNode;
 }) {
   return (
     <section id={id} className="scroll-mt-20 border-t border-border">
       <div className="mx-auto grid w-full max-w-7xl gap-6 px-6 py-16 md:grid-cols-[220px_1fr] md:gap-12 md:px-12 md:py-20">
         <h2 className="text-sm font-medium text-muted-foreground">{title}</h2>
-        <div className="min-w-0">{children}</div>
+        <div className="reveal min-w-0">
+          {statement && (
+            <p className="text-statement-gradient mb-8 w-fit text-2xl font-semibold tracking-tight md:text-3xl">
+              {statement}
+            </p>
+          )}
+          {children}
+        </div>
       </div>
     </section>
   );
@@ -163,9 +173,12 @@ function HeroSection() {
       <div aria-hidden="true" className="hero-glow absolute inset-0" />
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-20 md:grid-cols-[1fr_auto] md:px-12 md:py-28">
         <div>
-          <h1 className="animate-fade-in-up text-hero-gradient pb-1 text-5xl font-semibold tracking-tight md:text-6xl">
-            Marcos Nikel
-          </h1>
+          <div className="animate-fade-in-up flex items-center gap-4">
+            <h1 className="text-hero-gradient pb-1 text-5xl font-semibold tracking-tight md:text-6xl">
+              Marcos Nikel
+            </h1>
+            <PronounceName />
+          </div>
           <p className="animate-fade-in-up mt-3 text-base text-muted-foreground [animation-delay:80ms]">
             Software engineer · Sao Paulo, Brazil
           </p>
@@ -246,7 +259,7 @@ function HeroSection() {
 
 function WorkSection() {
   return (
-    <Section id="work" title="Selected work">
+    <Section id="work" title="Selected work" statement="Ship. Scale. Own.">
       <div className="divide-y divide-border border-y border-border">
         {work.map((item) => (
           <article
@@ -313,7 +326,7 @@ function ExperienceSection() {
 
 function AboutSection() {
   return (
-    <Section id="about" title="About">
+    <Section id="about" title="About" statement="Court. Road. Keyboard.">
       <div className="flex max-w-[70ch] flex-col gap-4 text-base leading-relaxed text-muted-foreground">
         <p>
           I was born and raised in the interior of Sao Paulo, got into computers
@@ -355,6 +368,97 @@ function AboutSection() {
   );
 }
 
+function ProjectsSection() {
+  return (
+    <Section id="projects" title="Projects" statement="Build. Run. Repeat.">
+      <p className="max-w-[70ch] text-base leading-relaxed text-muted-foreground">
+        Things I build for myself, off the clock.
+      </p>
+      <div className="mt-8 divide-y divide-border border-y border-border">
+        <article className="grid gap-2 py-6 md:grid-cols-[1fr_220px] md:gap-8">
+          <div className="md:order-1">
+            <h3 className="text-base font-medium text-foreground">
+              Training Hub
+            </h3>
+            <p className="mt-2 max-w-[70ch] text-sm leading-relaxed text-muted-foreground">
+              My own training log: it syncs every activity from Strava and
+              tracks mileage per shoe, because spreadsheets could not keep up
+              with the shoe rotation. Next.js, TypeScript, and a runner with
+              opinions.
+            </p>
+          </div>
+          <p className="text-sm text-muted-foreground md:order-2 md:text-right">
+            personal · active
+          </p>
+        </article>
+      </div>
+      <p className="mt-6 text-sm text-muted-foreground">
+        Also in the works: BetterFit and Finance Spot. Details soon.
+      </p>
+    </Section>
+  );
+}
+
+interface GearItem {
+  item: string;
+  note: string;
+}
+
+const deskGear: GearItem[] = [
+  {
+    item: "MacBook Pro 14, M4 Pro, 48 GB",
+    note: "does not break a sweat, unlike me",
+  },
+  { item: "Claude Code", note: "the pair programmer that never sleeps" },
+  { item: "Double-walled espresso cup", note: "the real IDE" },
+];
+
+const roadGear: GearItem[] = [
+  { item: "ASICS", note: "the easy-day pair" },
+  { item: "Adidas racing shoes", note: "the PR-chasing pair" },
+  { item: "GPS watch", note: "knows my pace better than I do" },
+  {
+    item: "Strava + Training Hub",
+    note: "if it is not logged, it did not happen",
+  },
+];
+
+function GearList({ label, items }: { label: string; items: GearItem[] }) {
+  return (
+    <div>
+      <p className="mb-3 text-sm font-medium text-foreground">{label}</p>
+      <ul className="divide-y divide-border border-y border-border">
+        {items.map((gear) => (
+          <li
+            key={gear.item}
+            className="flex flex-col gap-0.5 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4"
+          >
+            <span className="text-sm text-foreground">{gear.item}</span>
+            <span className="text-sm text-muted-foreground sm:text-right">
+              {gear.note}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function UsesSection() {
+  return (
+    <Section id="uses" title="Uses" statement="Desk. Shoes. Coffee.">
+      <p className="max-w-[70ch] text-base leading-relaxed text-muted-foreground">
+        The gear I depend on, in both offices: the one with the keyboard and the
+        one with the asphalt.
+      </p>
+      <div className="mt-8 grid gap-10 md:grid-cols-2">
+        <GearList label="The desk" items={deskGear} />
+        <GearList label="The road" items={roadGear} />
+      </div>
+    </Section>
+  );
+}
+
 function ContactSection() {
   return (
     <Section id="contact" title="Contact">
@@ -374,8 +478,10 @@ export default function HomePage() {
     <div>
       <HeroSection />
       <WorkSection />
+      <ProjectsSection />
       <ExperienceSection />
       <AboutSection />
+      <UsesSection />
       <ContactSection />
     </div>
   );
