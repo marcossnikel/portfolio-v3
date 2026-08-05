@@ -1,19 +1,21 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { Command, Moon, Sun } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const links = [
-  { href: "/#work", label: "Work" },
-  { href: "/#projects", label: "Projects", desktopOnly: true },
-  { href: "/#experience", label: "Experience", desktopOnly: true },
-  { href: "/#uses", label: "Uses", desktopOnly: true },
-  { href: "/#contact", label: "Contact" },
+  { href: "/about", label: "About" },
+  { href: "/work", label: "Work" },
+  { href: "/projects", label: "Projects" },
+  { href: "/uses", label: "Uses" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export function Navigation() {
+  const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -32,22 +34,35 @@ export function Navigation() {
         </Link>
 
         <div className="flex items-center gap-1">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground sm:px-3 ${
-                link.desktopOnly ? "hidden md:inline-flex" : ""
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          <div className="hidden items-center gap-1 md:flex">
+            {links.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`rounded-lg px-3 py-1.5 text-sm transition-colors duration-200 hover:bg-secondary hover:text-foreground ${
+                  pathname === link.href
+                    ? "bg-secondary text-foreground"
+                    : "text-muted-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("open-cmdk"))}
+            className="ml-1 cursor-pointer rounded-lg p-2 text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground"
+            aria-label="Open command menu"
+          >
+            <Command className="size-4" />
+          </button>
 
           <button
             type="button"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="ml-1 cursor-pointer rounded-lg p-2 text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground"
+            className="cursor-pointer rounded-lg p-2 text-muted-foreground transition-colors duration-200 hover:bg-secondary hover:text-foreground"
             aria-label="Toggle theme"
           >
             {mounted ? (

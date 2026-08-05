@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { Geist_Mono, Hanken_Grotesk } from "next/font/google";
 import { ThemeProvider } from "next-themes";
+import { CommandMenu } from "@/components/CommandMenu";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -67,9 +68,10 @@ export default function RootLayout({
           <TooltipProvider>
             <div className="flex min-h-dvh flex-col">
               <Navigation />
-              <main className="flex-1">{children}</main>
+              <main className="flex flex-1 flex-col">{children}</main>
               <Footer />
             </div>
+            <CommandMenu />
           </TooltipProvider>
         </ThemeProvider>
         <Analytics />
